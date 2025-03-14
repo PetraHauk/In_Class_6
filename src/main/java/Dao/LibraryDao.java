@@ -95,10 +95,18 @@ public class LibraryDao {
                 .getResultList();
     }
 
+    public List<BorrowedBook> getBorrowedBooks() {
+        return em.createQuery("SELECT b FROM BorrowedBook b", BorrowedBook.class).getResultList();
+    }
+
     public void borrowBook(Student student, Book book) {
         performTransaction(() -> {
             BorrowedBook borrowedBook = new BorrowedBook(student, book, LocalDate.now());
+
             em.persist(borrowedBook);
+
+            student.addBorrowedBook(borrowedBook);
+            book.addBorrowedBook(borrowedBook);
         });
     }
 }

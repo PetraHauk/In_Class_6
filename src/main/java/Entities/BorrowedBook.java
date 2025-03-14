@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name="BORROWEDBOOK")
+@Table(name = "BORROWEDBOOK")
 public class BorrowedBook {
 
     @EmbeddedId
@@ -13,15 +13,15 @@ public class BorrowedBook {
 
     @ManyToOne
     @MapsId("studentId")
-    @JoinColumn(name="student_id")
+    @JoinColumn(name = "student_id")
     private Student student;
 
     @ManyToOne
     @MapsId("bookId")
-    @JoinColumn(name="book_id")
+    @JoinColumn(name = "book_id")
     private Book book;
 
-    @Column(name="borrow_date")
+    @Column(name = "borrow_date")
     private LocalDate borrowDate;
 
     public BorrowedBook() {
@@ -29,7 +29,6 @@ public class BorrowedBook {
     }
 
     public BorrowedBook(Student student, Book book, LocalDate borrowDate) {
-        super();
         this.id = new BorrowedBookId(book.getId(), student.getId());
         this.student = student;
         this.book = book;
@@ -55,7 +54,4 @@ public class BorrowedBook {
     public void setBorrowDate(LocalDate borrowDate) {
         this.borrowDate = borrowDate;
     }
-
-
-
 }

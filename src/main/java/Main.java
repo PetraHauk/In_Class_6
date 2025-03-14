@@ -28,9 +28,17 @@ public class Main {
                     "Underland Chronicles and The Hunger Games trilogy.");
             libraryDao.addBiography(biography);
 
-            libraryDao.borrowBook(student, book);
+            Biography biography2 = new Biography(author2, "Sir Arthur Ignatius Conan Doyle KStJ DL " +
+                    "(22 May 1859 – 7 July 1930) was a British writer and physician. He created the character " +
+                    "Sherlock Holmes in 1887 for A Study in Scarlet, the first of four novels and fifty-six short " +
+                    "stories about Holmes and Dr. Watson.");
 
-            System.out.println("Author, Book, Biography, Student added and Book borrowed successfully!");
+            System.out.println("Author, Book, Biography, Student added successfully!");
+
+            libraryDao.borrowBook(student, book);
+            libraryDao.borrowBook(student, book2);
+
+            libraryDao.getBorrowedBooks().forEach(System.out::println);
 
         } catch (Exception e) {
             e.printStackTrace();

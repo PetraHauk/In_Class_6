@@ -2,6 +2,7 @@ package Entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -13,6 +14,10 @@ public class Student {
 
     @Column(name="name")
     private String name;
+
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<BorrowedBook> borrowedBooks = new ArrayList<>();
+
 
     public Student() {
         super();
@@ -33,5 +38,13 @@ public class Student {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<BorrowedBook> getBorrowedBooks() {
+        return borrowedBooks;
+    }
+
+    public void addBorrowedBook(BorrowedBook borrowedBook) {
+        borrowedBooks.add(borrowedBook);
     }
 }

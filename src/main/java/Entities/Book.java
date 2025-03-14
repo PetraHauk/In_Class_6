@@ -1,6 +1,7 @@
 package Entities;
 
 import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,9 +22,11 @@ public abstract class Book {
     private Author author;
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<BorrowedBook> borrowedBooks = new ArrayList<>();
+    private List<BorrowedBook> borrowedBooks = new ArrayList<>(); // Initialize the list
 
-    public Book() {}
+
+    public Book() {
+    }
 
     public Book(String title, Author author) {
         this.title = title;
@@ -54,7 +57,7 @@ public abstract class Book {
         return borrowedBooks;
     }
 
-    public void borrowBook(BorrowedBook borrowedBook) {
+    public void addBorrowedBook(BorrowedBook borrowedBook) {
         borrowedBooks.add(borrowedBook);
     }
 }
