@@ -12,19 +12,15 @@ public class Main {
         LibraryDao libraryDao = new LibraryDao(em);
 
         try {
-            // Adding Author
             Author author = new Author("Suzanne Collins");
             libraryDao.addAuthor(author);
 
-            // Adding Book
             EBook book = new EBook("The Hunger Games", author, 1000, "PDF");
             libraryDao.addBook(book);
 
-            // Adding Student
             Student student = new Student("John Doe");
             libraryDao.addStudent(student);
 
-            // Borrowing a Book
             libraryDao.borrowBook(student, book);
 
             System.out.println("Author, Book, Student added and Book borrowed successfully!");
