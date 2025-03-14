@@ -1,9 +1,6 @@
 package Dao;
 
-import Entities.Author;
-import Entities.Book;
-import Entities.BorrowedBook;
-import Entities.Student;
+import Entities.*;
 import jakarta.persistence.EntityManager;
 
 import java.time.LocalDate;
@@ -64,6 +61,18 @@ public class LibraryDao {
 
     public void updateStudent(Student student) {
         performTransaction(() -> em.merge(student));
+    }
+
+    public void addBiography(Biography biography) {
+        performTransaction(() -> em.persist(biography));
+    }
+
+    public void removeBiography(Biography biography) {
+        performTransaction(() -> em.remove(biography));
+    }
+
+    public void updateBiography(Biography biography) {
+        performTransaction(() -> em.merge(biography));
     }
 
     public List<Book> getBooks() {

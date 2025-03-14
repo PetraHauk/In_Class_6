@@ -7,20 +7,20 @@ import jakarta.persistence.*;
 public class EBook extends Book {
 
     @Column(name="fileSizeMB")
-    private int fileSizeMB;
+    private double fileSizeMB;
 
     @Column(name="fileFormat")
     private String fileFormat;
 
     public EBook() { super(); }
 
-    public EBook(String title, Author author, int fileSizeMB, String fileFormat) {
+    public EBook(String title, Author author, double fileSizeMB, String fileFormat) {
         super(title, author);
         this.fileSizeMB = fileSizeMB;
         this.fileFormat = fileFormat;
     }
 
-    public int getFileSizeMB() {
+    public double getFileSizeMB() {
         return fileSizeMB;
     }
 

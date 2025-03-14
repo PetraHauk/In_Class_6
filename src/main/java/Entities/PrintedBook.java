@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Table(name="PRINTEDBOOK")
 public class PrintedBook extends Book {
     @Column(name="weight")
-    private int weight;
+    private double weight;
 
     @Column(name="pageCount")
     private int pageCount;
@@ -15,13 +15,13 @@ public class PrintedBook extends Book {
         super();
     }
 
-    public PrintedBook(String title, Author author, int weight, int pageCount) {
+    public PrintedBook(String title, Author author, double weight, int pageCount) {
         super(title, author);
         this.weight = weight;
         this.pageCount = pageCount;
     }
 
-    public int getWeight() {
+    public double getWeight() {
         return weight;
     }
     public void setWeight(int weight) {

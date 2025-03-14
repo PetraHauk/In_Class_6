@@ -17,7 +17,7 @@ public abstract class Book {
     private String title;
 
     @ManyToOne
-    @JoinColumn(name = "author_id", nullable = false)
+    @JoinColumn(name = "authorId", nullable = false)
     private Author author;
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
