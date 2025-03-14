@@ -13,15 +13,15 @@ public class BorrowedBook {
 
     @ManyToOne
     @MapsId("studentId")
-    @JoinColumn(name = "student_id")
+    @JoinColumn(name = "studentId")
     private Student student;
 
     @ManyToOne
     @MapsId("bookId")
-    @JoinColumn(name = "book_id")
+    @JoinColumn(name = "bookId")
     private Book book;
 
-    @Column(name = "borrow_date")
+    @Column(name = "borrowDate")
     private LocalDate borrowDate;
 
     public BorrowedBook() {
@@ -53,5 +53,13 @@ public class BorrowedBook {
 
     public void setBorrowDate(LocalDate borrowDate) {
         this.borrowDate = borrowDate;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
     }
 }

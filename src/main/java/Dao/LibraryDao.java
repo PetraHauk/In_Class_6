@@ -2,14 +2,18 @@ package Dao;
 
 import Entities.*;
 import jakarta.persistence.EntityManager;
+import jakarta.transaction.*;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 public class LibraryDao {
 
     protected EntityManager em;
-
     public LibraryDao(EntityManager em) {
         this.em = em;
     }
@@ -99,14 +103,18 @@ public class LibraryDao {
         return em.createQuery("SELECT b FROM BorrowedBook b", BorrowedBook.class).getResultList();
     }
 
-    public void borrowBook(Student student, Book book) {
-        performTransaction(() -> {
-            BorrowedBook borrowedBook = new BorrowedBook(student, book, LocalDate.now());
+    public void borrowBook(Book book, Student student) {
+        em.merge(book);
+        em.merge(student);
 
-            em.persist(borrowedBook);
+        BorrowedBook borrowedBook = new BorrowedBook();
+        borrowedBook.setBook(book);
+        borrowedBook.setStudent(student);
+        borrowedBook.setBorrowDate(LocalDate.now());
 
-            student.addBorrowedBook(borrowedBook);
-            book.addBorrowedBook(borrowedBook);
-        });
+        em.persist(borrowedBook);
     }
+
+
+
 }

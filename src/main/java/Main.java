@@ -35,8 +35,8 @@ public class Main {
 
             System.out.println("Author, Book, Biography, Student added successfully!");
 
-            libraryDao.borrowBook(student, book);
-            libraryDao.borrowBook(student, book2);
+            libraryDao.borrowBook(book, student);
+            libraryDao.borrowBook(book2, student);
 
             libraryDao.getBorrowedBooks().forEach(System.out::println);
 
